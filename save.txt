@@ -1,0 +1,58 @@
+"use client";
+
+import { motion } from "framer-motion";
+import clsx from "clsx";
+
+interface SelectedTabProps {
+  tabs: string[];
+  selected: string;
+  onChange: (tab: string) => void;
+}
+
+export default function SelectedTab({ tabs, selected, onChange }: SelectedTabProps) {
+  return (
+    <div className="relative flex space-x-1 rounded-xl bg-gray-100 dark:bg-gray-800 p-1 w-fit mx-auto">
+      {tabs.map((tab) => (
+        <button
+          key={tab}
+          onClick={() => onChange(tab)}
+          className={clsx(
+            "relative z-10 px-4 py-2 rounded-lg text-sm font-medium transition focus:outline-none",
+            selected === tab ? "text-white" : "text-gray-600 dark:text-gray-300"
+          )}
+        >
+          {selected === tab && (
+            <motion.div
+              layoutId="highlight"
+              transition={{ type: "spring", stiffness: 500, damping: 30 }}
+              className="absolute inset-0 bg-blue-500 dark:bg-blue-600 rounded-lg z-0"
+            />
+          )}
+          <span className="relative z-10">{tab}</span>
+        </button>
+      ))}
+    </div>
+  );
+}
+"use client";
+
+import { useState } from "react";
+import SelectedTab from "./SelectedTab"; // Adjust path as needed
+
+const tabs = ["Overview", "Details", "Reviews"];
+
+export default function PageWithTabs() {
+  const [activeTab, setActiveTab] = useState(tabs[0]);
+
+  return (
+    <div className="space-y-4">
+      <SelectedTab tabs={tabs} selected={activeTab} onChange={setActiveTab} />
+
+      <div className="mt-4 p-4 rounded-lg border dark:border-gray-700 bg-white dark:bg-gray-900">
+        {activeTab === "Overview" && <div>This is the Overview content.</div>}
+        {activeTab === "Details" && <div>Here are some details about the item.</div>}
+        {activeTab === "Reviews" && <div>These are user reviews and ratings.</div>}
+      </div>
+    </div>
+  );
+}
