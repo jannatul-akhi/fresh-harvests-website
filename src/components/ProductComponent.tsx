@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import CardComponent from "./shared/CardComponent";
 
@@ -9,7 +10,12 @@ interface Product {
   productName: string;
   description: string;
   price: number;
+  stock: number;
   images: string[];
+  categoryId: string;
+  isDeleted: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 
 const ProductComponent = () => {
@@ -98,10 +104,14 @@ const ProductComponent = () => {
             ))}
           </div>
         )}
+
+        {/* See All Products Button */}
         <div className="text-center mt-8">
-          <button className="text-[#FF6A1A] border border-[#FF6A1A] px-4 py-2 rounded-lg font-semibold">
-            See All Products
-          </button>
+          <Link href="/all-products">
+            <button className="text-[#FF6A1A] cursor-pointer border border-[#FF6A1A] px-4 py-2 rounded-lg font-semibold">
+              See All Products
+            </button>
+          </Link>
         </div>
       </div>
     </div>

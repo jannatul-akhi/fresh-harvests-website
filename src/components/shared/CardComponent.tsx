@@ -1,4 +1,3 @@
-// shared/CardComponent.tsx
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,14 +6,19 @@ interface Product {
   productName: string;
   description: string;
   price: number;
+  stock: number;
   images: string[];
+  categoryId: string;
+  isDeleted: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 
 const CardComponent = ({ product }: { product: Product }) => {
   return (
     <div>
       <Link
-        href={`/product-details`}
+        href={`/product-details/${product.id}`}
         className="rounded-[1.3rem] p-4 shadow hover:shadow-md transition duration-300 flex flex-col justify-between"
       >
         <div className="relative w-full h-48 mb-4">

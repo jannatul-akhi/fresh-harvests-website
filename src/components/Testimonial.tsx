@@ -8,7 +8,7 @@ const Testimonial = () => {
         <p className="   text-[#749B3F] text-[1.3rem] bg-[#749B3F1A] px-3 py-1 rounded-lg font-medium mb-2 inline-block">
           Testimonial
         </p>
-        <h2 className="text-[1rem] md:text-[2rem] lg:text-[3rem] font-semibold text-gray-900 leading-tight">
+        <h2 className="text-[2rem] md:text-[2rem] lg:text-[3rem] font-semibold text-gray-900 leading-tight">
           Our Customers Say
         </h2>
         <p className="text-[#4A4A52] text-[.87rem] font-normal mt-4">
