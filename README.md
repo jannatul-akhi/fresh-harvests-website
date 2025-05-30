@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 🛠 Project Setup Documentation
 
-## Getting Started
+### 📦 Project Name: `online-shop-frontend`
 
-First, run the development server:
+---
+
+### ✅ How to Run the Project Locally
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone <your-repo-url>
+   cd online-shop-frontend
+   ```
+
+2. **Install dependencies**:
+   Ensure you have Node.js (v18 or higher) and npm installed.
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**:
+   Create a `.env.local` file in the root directory and add the necessary environment variables (as required by API/auth integration).
+
+   Example:
+
+   ```env
+   NEXT_PUBLIC_API_BASE_URL=https://your-api-url.com/api/v1
+   NEXTAUTH_URL=http://localhost:3000
+   NEXTAUTH_SECRET=your_secret_key
+   ```
+
+4. **Run the development server**:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+
+---
+
+### 🚀 Steps to Build and Deploy the Application
+
+#### Build for production:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### Start the production server:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This will start the optimized Next.js production server on port 3000 (default).
 
-## Learn More
+#### Deployment Options:
 
-To learn more about Next.js, take a look at the following resources:
+You can deploy this project using platforms like:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Vercel (Recommended for Next.js)**:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+  1. Push the code to GitHub.
+  2. Go to [vercel.com](https://vercel.com), sign in, and import the GitHub repository.
+  3. Add your environment variables in Vercel settings.
+  4. Click **Deploy**.
 
-## Deploy on Vercel
+- **Other options**:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  - Netlify (using Next.js adapter)
+  - Docker
+  - Custom VPS with Node.js and reverse proxy (e.g., NGINX)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+### 📁 Folder Structure Overview
+
+```
+online-shop-frontend/
+├── components/          # Reusable UI components
+├── features/            # RTK Query slices & features
+├── pages/               # Next.js pages (routes)
+├── public/              # Static assets
+├── styles/              # Tailwind and global styles
+├── utils/               # Utility functions/helpers
+├── .env.local           # Local environment variables
+├── tailwind.config.ts   # Tailwind configuration
+├── next.config.js       # Next.js configuration
+├── tsconfig.json        # TypeScript configuration
+└── README.md            # Project documentation
+```
+
+---
+
+### 🧪 Testing (Optional)
+
+- Currently manual testing is done during development.
+- For unit/integration testing, you can use tools like **Jest**, **React Testing Library**, etc.
+
+---
+
+Let me know if you want me to generate a complete `README.md` file with badges, descriptions, and contributor sections.

@@ -76,7 +76,9 @@ const FruitBundle = () => {
 
           {/* Countdown Timer */}
           <div className="flex gap-2 sm:gap-4 mt-4 flex-wrap justify-center lg:justify-start">
-            {(["days", "hours", "minutes", "seconds"] as (keyof TimeLeft)[]).map((unit, idx) => (
+            {(
+              ["days", "hours", "minutes", "seconds"] as (keyof TimeLeft)[]
+            ).map((unit, idx) => (
               <div
                 key={idx}
                 className="flex flex-col bg-white px-3 py-2 sm:px-4 sm:py-3 rounded-lg text-center w-20 sm:w-24"
@@ -97,7 +99,8 @@ const FruitBundle = () => {
         </div>
 
         {/* Right: Image */}
-        <div className="w-full lg:w-1/2 flex justify-center hidden lg:flex">
+        {/* Right: Image (Hide space on small screens, show only on lg) */}
+        <div className="lg:flex hidden w-0 lg:w-1/2 justify-center">
           <Image
             src="/images/fruit-images.png"
             alt="Happy man holding veggies"
