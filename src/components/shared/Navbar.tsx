@@ -1,70 +1,133 @@
 "use client";
 
-import { Button, Link } from "@nextui-org/react";
-import logo from "../../../public/images/full-logo.png";
-
-import React, { useState } from "react";
-import { FaHeart } from "react-icons/fa";
-import { HiShoppingCart } from "react-icons/hi";
+import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import logo from "../../../public/images/full-logo.png";
+import { FaHeart } from "react-icons/fa";
+import { HiShoppingCart, HiMenu, HiX } from "react-icons/hi";
+import { Button, Link } from "@nextui-org/react";
+import { motion, AnimatePresence } from "framer-motion";
+import AuthModal from "../AuthModal";
 
 const tabs = ["Home", "Shop", "About us", "Blog"];
 
 const Navbar = () => {
   const [activeTab, setActiveTab] = useState("Home");
+  const [showModal, setShowModal] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="w-full bg-transparent border-gray-200 z-50">
-      <div className=" flex items-center justify-between  py-3 md:py-4">
-        {/* Left: Logo */}
-        <div className="flex-shrink-0">
-          <Link href="/" className="">
-            <Image alt="" src={logo} width={200} height={200}></Image>
-          </Link>
-        </div>
-
-        {/* Center: Main Menu (desktop only) */}
-        <div>
-          <ul className="relative mx-auto flex w-fit gap-x-[4rem]">
-            {tabs.map((tab) => (
-              <li
-                key={tab}
-                className="relative cursor-pointer pb-2 text-[#4A4A52] text-[.9rem] font-normal"
-                onClick={() => setActiveTab(tab)}
-              >
-                {tab}
-                {activeTab === tab && (
-                  <motion.div
-                    layoutId="underline"
-                    className="absolute bottom-0  right-2 h-[.13rem] w-2/4  rounded-[.6rem] bg-[#749B3F]"
-                  />
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Right: Search bar */}
-       
-        <div className="flex items-center gap-5 text-white z-50">
-          <div className="flex items-center gap-3 text-white">
-            <FaHeart className="w-[1rem] h-[1rem] text-white" />
-            <p className="text-[.9rem] font-normal text-white">Favorites</p>
-          </div>
-          <div className="flex items-center gap-3 text-white">
-            <HiShoppingCart className="w-[1.3rem] h-[1.3rem] text-white" />
-            <p className="text-[.9rem] font-normal text-white">Cart</p>
+    <>
+      <nav className="w-full bg-transparent border-gray-200 z-50 relative">
+        <div className="flex items-center justify-between py-3 md:py-4 px-4 md:px-8">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <Link href="/">
+              <Image alt="logo" src={logo} width={160} height={50} />
+            </Link>
           </div>
 
-          <Button className="bg-transparent border border-white text-white rounded-[4px]">
-            Sign in
-          </Button>
+          {/* Desktop Menu */}
+          <div className="hidden md:flex">
+            <ul className="flex gap-x-[4rem]">
+              {tabs.map((tab) => (
+                <li
+                  key={tab}
+                  className="relative cursor-pointer pb-2 text-[#4A4A52] text-[.9rem] font-normal"
+                  onClick={() => setActiveTab(tab)}
+                >
+                  {tab}
+                  {activeTab === tab && (
+                    <motion.div
+                      layoutId="underline"
+                      className="absolute bottom-0 right-2 h-[.13rem] w-2/4 rounded-[.6rem] bg-[#749B3F]"
+                    />
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Icons and Sign In - Desktop */}
+          <div className="hidden md:flex items-center gap-5 text-white z-50">
+            <div className="flex items-center gap-3">
+              <FaHeart className="w-[1rem] h-[1rem] text-white" />
+              <p className="text-[.9rem] font-normal text-white">Favorites</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <HiShoppingCart className="w-[1.3rem] h-[1.3rem] text-white" />
+              <p className="text-[.9rem] font-normal text-white">Cart</p>
+            </div>
+
+            <Button
+              className="bg-transparent border border-white text-white rounded-[4px]"
+              onClick={() => setShowModal(true)}
+            >
+              Sign in
+            </Button>
+          </div>
+
+          {/* Hamburger Menu - Mobile */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-white text-2xl focus:outline-none"
+            >
+              {isMobileMenuOpen ? <HiX /> : <HiMenu />}
+            </button>
+          </div>
         </div>
 
-       
-      </div>
-    </nav>
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-white px-6 py-4 shadow-md"
+            >
+              <ul className="flex flex-col gap-4 text-[#4A4A52] font-medium">
+                {tabs.map((tab) => (
+                  <li
+                    key={tab}
+                    className="cursor-pointer"
+                    onClick={() => {
+                      setActiveTab(tab);
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    {tab}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 flex flex-col gap-4">
+                <div className="flex items-center gap-2 text-[#4A4A52]">
+                  <FaHeart className="text-[#4A4A52]" />
+                  <span>Favorites</span>
+                </div>
+                <div className="flex items-center gap-2 text-[#4A4A52]">
+                  <HiShoppingCart className="text-[#4A4A52]" />
+                  <span>Cart</span>
+                </div>
+                <Button
+                  className="border border-[#4A4A52] text-[#4A4A52] mt-2"
+                  onClick={() => {
+                    setShowModal(true);
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  Sign in
+                </Button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+
+      {/* Auth Modal */}
+      <AuthModal isOpen={showModal} onClose={() => setShowModal(false)} />
+    </>
   );
 };
 
