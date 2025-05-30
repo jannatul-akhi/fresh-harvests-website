@@ -11,7 +11,7 @@ import AuthModal from "../AuthModal";
 
 const tabs = ["Home", "Shop", "About us", "Blog"];
 
-const Navbar = () => {
+const NavbarForDetailProduct = () => {
   const [activeTab, setActiveTab] = useState("Home");
   const [showModal, setShowModal] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -51,16 +51,16 @@ const Navbar = () => {
           {/* Icons and Sign In - Desktop */}
           <div className="hidden md:flex items-center gap-5 text-white z-50">
             <div className="flex items-center gap-3">
-              <FaHeart className="w-[1rem] h-[1rem] text-white" />
-              <p className="text-[.9rem] font-normal text-white">Favorites</p>
+              <FaHeart className="w-[1rem] h-[1rem] text-[#749B3F]" />
+              <p className="text-[.9rem] font-normal text-[#212337]">Favorites</p>
             </div>
             <div className="flex items-center gap-3">
-              <HiShoppingCart className="w-[1.3rem] h-[1.3rem] text-white" />
-              <p className="text-[.9rem] font-normal text-white">Cart</p>
+              <HiShoppingCart className="w-[1.3rem] h-[1.3rem] text-[#749B3F]" />
+              <p className="text-[.9rem] font-normal text-[#212337]">Cart</p>
             </div>
 
             <Button
-              className="bg-transparent border border-white text-white rounded-[4px] cursor-pointer"
+              className="bg-transparent border border-[#212337] text-[#212337] rounded-[4px] cursor-pointer"
               onClick={() => setShowModal(true)}
             >
               Sign in
@@ -131,4 +131,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarForDetailProduct;

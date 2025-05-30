@@ -41,7 +41,7 @@ const FruitBundle = () => {
     >
       {/* Top Right Fruit Pattern */}
       <div
-        className="absolute -top-60 -right-60 w-150 h-150 bg-no-repeat bg-contain pointer-events-none"
+        className="absolute -top-80 -right-80 w-150 h-150 bg-no-repeat bg-contain pointer-events-none"
         style={{
           backgroundImage: `url('/images/fruit-pattern.png')`,
           transform: "rotate(40deg)",
@@ -50,23 +50,45 @@ const FruitBundle = () => {
 
       {/* Bottom Left Fruit Pattern */}
       <div
-        className="absolute -bottom-60 -left-60 w-150 h-150 bg-no-repeat bg-contain pointer-events-none"
+        className="absolute -bottom-80 -left-80 w-150 h-150 bg-no-repeat bg-contain pointer-events-none"
         style={{
           backgroundImage: `url('/images/fruit-pattern.png')`,
           transform: "rotate(40deg)",
         }}
       ></div>
 
+        <div
+        className="absolute -bottom-60 -left-60 w-150 h-150 bg-no-repeat bg-contain pointer-events-none"
+        style={{
+          backgroundImage: `url('/images/')`,
+          transform: "rotate(40deg)",
+        }}
+      ></div>
+
       <div className="absolute inset-0 bg-gray-200/5 z-10 pointer-events-none"></div>
 
-      <div className="w-11/12 mx-auto mt-32 mb-10 relative z-50 flex flex-col lg:flex-row items-center justify-between gap-10">
+      {/* Blur effect  */}
+      <div className="absolute bottom-0 left-0 w-50 h-30 z-15 rounded-tr-full  blur-sm opacity-100 bg-gradient-to-tr from-[#749B3F] to-[#749B3F] pointer-events-none" />
+
+      {/* leaf */}
+      <div className="flex justify-center -mr-50 mt-16">
+        <Image
+          src="/images/leaf1.png"
+          alt="Leaf"
+          width={80}
+          height={20}
+          className="rounded-full object-cover -rotate-90"
+        />
+      </div>
+
+      <div className="w-11/12 mx-auto  mb-10 relative z-50 flex flex-col lg:flex-row items-center justify-between gap-10">
         {/* Left: Content */}
         <div className="text-[#212337] flex flex-col justify-start text-center lg:text-left items-center lg:items-start w-full lg:w-1/2">
           <p className="text-[#749B3F] text-lg sm:text-xl bg-[#749B3F1A] px-4 py-1 rounded-lg font-medium mb-2 w-fit">
             Special Offer
           </p>
 
-          <h2 className="text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[5rem] font-semibold text-gray-900 leading-tight">
+          <h2 className="text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[4.5rem] font-semibold text-gray-900 leading-tight">
             Seasonal Fruit Bundle
           </h2>
 
@@ -102,13 +124,24 @@ const FruitBundle = () => {
         {/* Right: Image (Hide space on small screens, show only on lg) */}
         <div className="lg:flex hidden w-0 lg:w-1/2 justify-center">
           <Image
-            src="/images/fruit-images.png"
+            src="/images/seasonal.png"
             alt="Happy man holding veggies"
             width={900}
             height={300}
             className="w-full max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-[900px] h-auto relative z-10 rounded-b-4xl"
           />
+          
         </div>
+      </div>
+      {/* leaf */}
+      <div className="flex justify-end -mt-30 -mr-20">
+        <Image
+          src="/images/leaf1.png"
+          alt="Leaf"
+          width={200}
+          height={60}
+          className="rounded-full object-cover -rotate-90"
+        />
       </div>
     </div>
   );

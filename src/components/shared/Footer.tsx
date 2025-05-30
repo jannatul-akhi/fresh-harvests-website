@@ -15,7 +15,7 @@ import { AiFillTwitterCircle } from "react-icons/ai";
 const Footer = () => {
   return (
     <footer className="w-full bg-[#F4F6F6] py-10 px-4 text-sm">
-      <div className="w-full max-w-[1920px] mx-auto">
+      <div className="w-11/12 max-w-[1920px] mx-auto">
         {/* Top Section */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 font-rubik">
           {/* Logo & App Download */}
@@ -28,8 +28,8 @@ const Footer = () => {
                 height={210}
               />
             </Link>
-            <div>
-              <h3 className="text-[#4A4A52] text-[.88rem] font-normal mb-2">
+            <div className="">
+              <h3 className="text-[#4A4A52] text-[.88rem] font-normal mb-2 lg:mt-30">
                 Download App:
               </h3>
               <div className="flex gap-4">

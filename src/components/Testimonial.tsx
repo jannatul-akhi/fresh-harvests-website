@@ -1,9 +1,9 @@
-
+import Image from "next/image";
 import TestimonialSlider from "./TestimonialSlider";
 
 const Testimonial = () => {
   return (
-    <div className="w-8/12 mx-auto max-w-[1920px] py-30">
+    <div className="w-11/12 lg:w-8/12 mx-auto max-w-[1920px] py-30">
       <div className="text-center">
         <p className="   text-[#749B3F] text-[1.3rem] bg-[#749B3F1A] px-3 py-1 rounded-lg font-medium mb-2 inline-block">
           Testimonial
@@ -15,6 +15,28 @@ const Testimonial = () => {
           At Fresh Harvests, we are passionate about providing you with the
           freshest <br /> and most flavorful fruits and vegetables.
         </p>
+      </div>
+
+      {/* leaf  */}
+      <div className="flex justify-between">
+        <div className="-mt-20">
+          <Image
+            src="/images/leaf1.png"
+            alt="Leaf"
+            width={80}
+            height={20}
+            className="rounded-full object-cover -rotate-80"
+          />
+        </div>
+        <div className="-mt-10">
+          <Image
+            src="/images/leaf1.png"
+            alt="Leaf"
+            width={80}
+            height={20}
+            className="rounded-full object-cover -rotate-45"
+          />
+        </div>
       </div>
 
       {/* testimony  */}

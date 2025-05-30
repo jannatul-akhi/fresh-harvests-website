@@ -1,10 +1,35 @@
-'use client'; // for Next.js if using app router
+'use client';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
 import Image from 'next/image';
+
+const testimonials = [
+  {
+    name: "Jane Smith",
+    title: "Nutritionist",
+    message:
+      "Another amazing testimonial! The freshness and flavor of the fruit bundle made my day. Excellent service and presentation!Another amazing testimonial! The freshness and flavor of the fruit bundle made my day. Excellent service and presentation!",
+    image: "/images/testi.png",
+  },
+  {
+    name: "Mark Wilson",
+    title: "Health Coach",
+    message:
+      "I've recommended this to all my clients. Top-notch quality and service! Another amazing testimonial! The freshness and flavor of the fruit bundle made my day. Excellent service and presentation!",
+    image: "/images/testi.png",
+  },
+  {
+    name: "Emily Johnson",
+    title: "Dietitian",
+    message:
+      "Impressed with the taste and packaging. A must-try for healthy living! Another amazing testimonial! The freshness and flavor of the fruit bundle made my day. Excellent service and presentation!",
+    image: "/images/testi.png",
+  },
+  // Add more testimonials as needed
+];
 
 const TestimonialSlider = () => {
   return (
@@ -17,82 +42,29 @@ const TestimonialSlider = () => {
       loop={true}
       className="mt-10"
     >
-      {/* Slide 1 */}
-      <SwiperSlide>
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-6">
-          <div className="w-1/2">
-            <Image
-              src="/images/testimony2.webp"
-              alt="Testimony"
-              width={60}
-              height={80}
-              className="relative z-10 rounded-full  w-2/3 left-10 lg:left-20"
-            />
+      {testimonials.map((testimonial, index) => (
+        <SwiperSlide key={index}>
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-6">
+            <div className="w-full lg:w-1/2">
+              <Image
+                src={testimonial.image}
+                alt={testimonial.name}
+                width={60}
+                height={80}
+                className="relative z-10 rounded-full lg:w-2/3 left-10 lg:left-20"
+              />
+            </div>
+            <div className="bg-[#F4F6F6] rounded-lg w-full lg:w-1/2 px-2 lg:px-6 pt-4 pb-6">
+              <p className="text-[#4A4A52] text-[.87rem] font-normal mt-4">
+                {testimonial.message}
+              </p>
+              <p className="text-[#4A4A52] text-[.87rem] font-normal mt-4">
+                <span className="font-semibold">{testimonial.name} -</span> {testimonial.title}
+              </p>
+            </div>
           </div>
-          <div className="bg-[#F4F6F6] rounded-lg w-full lg:w-1/2 px-2 lg:px-6 pt-4 pb-6">
-            <p className="text-[#4A4A52] text-[.87rem] font-normal mt-4">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos sint,
-              itaque, illum incidunt explicabo odit rerum architecto impedit ex
-              necessitatibus esse nostrum dolorum consequatur quis ratione error
-              aliquam expedita fuga repellat, odio accusantium ad enim animi
-              voluptas.
-            </p>
-            <p className="text-[#4A4A52] text-[.87rem] font-normal mt-4">
-              <span className="font-semibold">John Doe -</span> Professional Chef
-            </p>
-          </div>
-        </div>
-      </SwiperSlide>
-
-      {/* Slide 2 */}
-      <SwiperSlide>
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-6">
-          <div className="w-1/2">
-            <Image
-              src="/images/testimony2.webp"
-              alt="Testimony"
-              width={60}
-              height={80}
-              className="relative z-10 rounded-full  w-2/3 left-10 lg:left-200"
-            />
-          </div>
-          <div className="bg-[#F4F6F6] rounded-lg w-full lg:w-1/2 px-2 lg:px-6 pt-4 pb-6">
-            <p className="text-[#4A4A52] text-[.87rem] font-normal mt-4">
-              Another amazing testimonial! The freshness and flavor of the fruit
-              bundle made my day. Excellent service and presentation!
-            </p>
-            <p className="text-[#4A4A52] text-[.87rem] font-normal mt-4">
-              <span className="font-semibold">Jane Smith -</span> Nutritionist
-            </p>
-          </div>
-        </div>
-      </SwiperSlide>
-
-      {/* Slide 3 */}
-      <SwiperSlide>
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-6">
-          <div className="w-full lg:w-1/2">
-            <Image
-              src="/images/testimony2.webp"
-              alt="Testimony"
-              width={60}
-              height={80}
-              className="relative z-10 rounded-full w-2/3 left-10 lg:left-20"
-            />
-          </div>
-          <div className="bg-[#F4F6F6] rounded-lg w-full lg:w-1/2 px-2 lg:px-6 pt-4 pb-6">
-            <p className="text-[#4A4A52] text-[.87rem] font-normal mt-4">
-              Another amazing testimonial! The freshness and flavor of the fruit
-              bundle made my day. Excellent service and presentation!
-            </p>
-            <p className="text-[#4A4A52] text-[.87rem] font-normal mt-4">
-              <span className="font-semibold">Jane Smith -</span> Nutritionist
-            </p>
-          </div>
-        </div>
-      </SwiperSlide>
-
-      {/* Add more slides as needed */}
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 };

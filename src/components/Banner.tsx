@@ -28,50 +28,75 @@ const FreshHarvestHero = () => {
         <Navbar />
 
         {/* Main Section */}
-        <div className="flex flex-col-reverse lg:flex-row items-center justify-between pt-10 gap-10 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between pt-10 gap-10 relative z-10">
           {/* Left Side */}
           <div className="w-full lg:w-1/2 text-center lg:text-left">
-            <p className="mx-auto lg:mx-0 w-fit text-[#749B3F] text-base sm:text-lg md:text-xl bg-[#749B3F1A] px-3 py-1 rounded-[8px] font-medium mb-2">
-              Welcome to Fresh Harvest
-            </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 leading-snug">
-              Fresh Fruits and <br className="hidden sm:block" /> Vegetables
-            </h2>
-            <p className="text-[#4A4A52] text-sm sm:text-base font-normal mt-4 max-w-md mx-auto lg:mx-0">
-              At Fresh Harvests, we are passionate about providing you with the
-              freshest and most flavorful fruits and vegetables.
-            </p>
-            <button className="mt-6 px-6 py-3 bg-[#FF6A1A] hover:bg-orange-500 text-white font-semibold rounded-lg">
-              Shop Now
-            </button>
-
-            {/* Offer Card */}
-            <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 mt-8">
-              <PiArrowBendDownRight className="text-[#749B3F] w-20 h-10 sm:w-32 sm:h-14 lg:w-40 lg:h-20" />
-              <div className="flex items-center gap-3 bg-[#EBEBEB] p-4 rounded-lg w-full sm:w-fit">
-                <div>
-                  <p className="text-xs sm:text-sm text-[#176D38] font-medium">
-                    Special Offer
-                  </p>
-                  <p className="text-xl sm:text-2xl font-medium text-[#212337]">
-                    Fresh Salad
-                  </p>
-                  <p className="text-sm font-medium text-[#176D38]">
-                    Up to{" "}
-                    <span className="text-[#212337] text-lg sm:text-xl">70%</span>{" "}
-                    <span className="text-[#212337]">off</span>
-                  </p>
-                  <span className="text-xs bg-[#176D38] text-white px-3 py-1 rounded-full mt-1 inline-block">
-                    CODE: <span className="text-[#FAC714]">FRESH25</span>
-                  </span>
-                </div>
+            {/* leaf  */}
+            <div className="flex justify-between">
+              <div className="-ml-36">
                 <Image
-                  src="/images/vegetable-plate.png"
-                  alt="Salad"
-                  width={100}
-                  height={80}
-                  className="rounded-full object-cover"
+                  src="/images/leaf1.png"
+                  alt="Leaf"
+                  width={180}
+                  height={60}
+                  className="rounded-full object-cover -rotate-200"
                 />
+              </div>
+              <div className="-mr-40 mt-20">
+                <Image
+                  src="/images/leaf1.png"
+                  alt="Leaf"
+                  width={80}
+                  height={20}
+                  className="rounded-full object-cover -rotate-45"
+                />
+              </div>
+            </div>
+            <div className="-mt-30 pl-8">
+              <p className="mx-auto lg:mx-0 w-fit text-[#749B3F] text-base sm:text-lg md:text-xl bg-[#749B3F1A] px-3 py-1 rounded-[8px] font-medium mb-2">
+                Welcome to Fresh Harvest
+              </p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-7xl font-semibold text-gray-900 leading-snug">
+                Fresh Fruits and <br className="hidden sm:block" /> Vegetables
+              </h2>
+              <p className="text-[#4A4A52] text-sm sm:text-base font-normal mt-4 max-w-md mx-auto lg:mx-0">
+                At Fresh Harvests, we are passionate about providing you with
+                the freshest and most flavorful fruits and vegetables.
+              </p>
+              <button className="mt-6 px-6 py-3 bg-[#FF6A1A] hover:bg-orange-500 text-white font-semibold rounded-lg">
+                Shop Now
+              </button>
+
+              {/* Offer Card */}
+              <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 ">
+                <PiArrowBendDownRight className="text-[#749B3F] w-20 h-10 sm:w-32 sm:h-14 lg:w-40 lg:h-20" />
+                <div className="flex items-center gap-3 bg-[#EBEBEB] p-4 rounded-lg w-full sm:w-fit">
+                  <div>
+                    <p className="text-xs sm:text-sm text-[#176D38] font-medium">
+                      Special Offer
+                    </p>
+                    <p className="text-xl sm:text-2xl font-medium text-[#212337]">
+                      Fresh Salad
+                    </p>
+                    <p className="text-sm font-medium text-[#176D38]">
+                      Up to{" "}
+                      <span className="text-[#212337] text-lg sm:text-xl">
+                        70%
+                      </span>{" "}
+                      <span className="text-[#212337]">off</span>
+                    </p>
+                    <span className="text-xs bg-[#176D38] text-white px-3 py-1 rounded-full mt-1 inline-block">
+                      CODE: <span className="text-[#FAC714]">FRESH25</span>
+                    </span>
+                  </div>
+                  <Image
+                    src="/images/vegetable-plate.png"
+                    alt="Salad"
+                    width={100}
+                    height={80}
+                    className="rounded-full object-cover"
+                  />
+                </div>
               </div>
             </div>
 
@@ -102,7 +127,7 @@ const FreshHarvestHero = () => {
           {/* Right Side - Girl Image */}
           <div className="relative z-10 w-full lg:w-1/2 flex justify-center">
             <Image
-              src="/images/little-girl.png"
+              src="/images/banner-image.png"
               alt="Girl with vegetables"
               width={400}
               height={500}
