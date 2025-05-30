@@ -1,6 +1,6 @@
 ## 🛠 Project Setup Documentation
 
-### 📦 Project Name: `online-shop-frontend`
+### 📦 Project Name: `fresh-harvests-website`
 
 ---
 
@@ -9,7 +9,7 @@
 1. **Clone the repository**:
 
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/jannatul-akhi/fresh-harvests-website
    cd online-shop-frontend
    ```
 
@@ -59,22 +59,15 @@ This will start the optimized Next.js production server on port 3000 (default).
 
 #### Deployment Options:
 
-You can deploy this project using platforms like:
+
 
 - **Vercel (Recommended for Next.js)**:
 
-  1. Push the code to GitHub.
-  2. Go to [vercel.com](https://vercel.com), sign in, and import the GitHub repository.
-  3. Add your environment variables in Vercel settings.
-  4. Click **Deploy**.
+  1. I have deployed my code in Vercel
+  2. Go to Live link: https://fresh-harvests-website-phi.vercel.app/
 
-- **Other options**:
 
-  - Netlify (using Next.js adapter)
-  - Docker
-  - Custom VPS with Node.js and reverse proxy (e.g., NGINX)
 
----
 
 ### 📁 Folder Structure Overview
 
@@ -94,9 +87,11 @@ online-shop-frontend/
 
 ---
 
-### 🧪 Testing (Optional)
+### 🧪 View:
 
-- Currently manual testing is done during development.
-- For unit/integration testing, you can use tools like **Jest**, **React Testing Library**, etc.
+Github Link: https://github.com/jannatul-akhi/fresh-harvests-website
+Live Link: https://fresh-harvests-website-phi.vercel.app/
+
+
 
 ---
