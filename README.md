@@ -80,13 +80,12 @@ You can deploy this project using platforms like:
 
 ```
 online-shop-frontend/
+├── src/                 # Hold the full project
 ├── components/          # Reusable UI components
-├── features/            # RTK Query slices & features
 ├── pages/               # Next.js pages (routes)
 ├── public/              # Static assets
 ├── styles/              # Tailwind and global styles
-├── utils/               # Utility functions/helpers
-├── .env.local           # Local environment variables
+├── redux/               # Redux functions/helpers
 ├── tailwind.config.ts   # Tailwind configuration
 ├── next.config.js       # Next.js configuration
 ├── tsconfig.json        # TypeScript configuration
@@ -101,5 +100,3 @@ online-shop-frontend/
 - For unit/integration testing, you can use tools like **Jest**, **React Testing Library**, etc.
 
 ---
-
-Let me know if you want me to generate a complete `README.md` file with badges, descriptions, and contributor sections.
