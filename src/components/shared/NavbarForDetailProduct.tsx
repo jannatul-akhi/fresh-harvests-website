@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import logo from "../../../public/images/full-logo.png";
 import { FaHeart } from "react-icons/fa";
@@ -8,13 +8,31 @@ import { HiShoppingCart, HiMenu, HiX } from "react-icons/hi";
 import { Button, Link } from "@nextui-org/react";
 import { motion, AnimatePresence } from "framer-motion";
 import AuthModal from "../AuthModal";
+import { toast } from "sonner";
 
 const tabs = ["Home", "Shop", "About us", "Blog"];
 
-const NavbarForDetailProduct = () => {
+const Navbar = () => {
   const [activeTab, setActiveTab] = useState("Home");
   const [showModal, setShowModal] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const user = localStorage.getItem("authUser");
+    if (user) setIsAuthenticated(true);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("authUser");
+    setIsAuthenticated(false);
+    toast.success("You have been logged out successfully.");
+  };
+
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+    setShowModal(false);
+  };
 
   return (
     <>
@@ -48,23 +66,39 @@ const NavbarForDetailProduct = () => {
             </ul>
           </div>
 
-          {/* Icons and Sign In - Desktop */}
+          {/* Icons and Auth Buttons - Desktop */}
           <div className="hidden md:flex items-center gap-5 text-white z-50">
             <div className="flex items-center gap-3">
               <FaHeart className="w-[1rem] h-[1rem] text-[#749B3F]" />
-              <p className="text-[.9rem] font-normal text-[#212337]">Favorites</p>
+              <p className="text-[.9rem] font-normal text-black">Favorites</p>
             </div>
-            <div className="flex items-center gap-3">
-              <HiShoppingCart className="w-[1.3rem] h-[1.3rem] text-[#749B3F]" />
-              <p className="text-[.9rem] font-normal text-[#212337]">Cart</p>
+            <div className="flex items-center gap-3 relative">
+              <div className="relative">
+                <HiShoppingCart className="w-[1.3rem] h-[1.3rem] text-[#749B3F]" />
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[0.65rem] w-4 h-4 flex items-center justify-center rounded-full">
+                  2
+                </span>
+
+                
+              </div>
+                <p className="text-[.9rem] font-normal text-black">Cart</p>
             </div>
 
-            <Button
-              className="bg-transparent border border-[#212337] text-[#212337] rounded-[4px] cursor-pointer"
-              onClick={() => setShowModal(true)}
-            >
-              Sign in
-            </Button>
+            {isAuthenticated ? (
+              <Button
+                className="bg-transparent border border-black text-black rounded-[4px]"
+                onClick={handleLogout}
+              >
+                Logout
+              </Button>
+            ) : (
+              <Button
+                className="bg-transparent border border-black text-black rounded-[4px]"
+                onClick={() => setShowModal(true)}
+              >
+                Sign in
+              </Button>
+            )}
           </div>
 
           {/* Hamburger Menu - Mobile */}
@@ -73,7 +107,11 @@ const NavbarForDetailProduct = () => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-white text-2xl focus:outline-none"
             >
-              {isMobileMenuOpen ? <HiX /> : <HiMenu className="text-[#212337]" />}
+              {isMobileMenuOpen ? (
+                <HiX />
+              ) : (
+                <HiMenu className="text-[#212337]" />
+              )}
             </button>
           </div>
         </div>
@@ -110,15 +148,27 @@ const NavbarForDetailProduct = () => {
                   <HiShoppingCart className="text-[#4A4A52]" />
                   <span>Cart</span>
                 </div>
-                <Button
-                  className="border border-[#4A4A52] text-[#4A4A52] mt-2"
-                  onClick={() => {
-                    setShowModal(true);
-                    setIsMobileMenuOpen(false);
-                  }}
-                >
-                  Sign in
-                </Button>
+                {isAuthenticated ? (
+                  <Button
+                    className="border border-[#4A4A52] text-[#4A4A52] mt-2"
+                    onClick={() => {
+                      handleLogout();
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    Logout
+                  </Button>
+                ) : (
+                  <Button
+                    className="border border-[#4A4A52] text-[#4A4A52] mt-2"
+                    onClick={() => {
+                      setShowModal(true);
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    Sign in
+                  </Button>
+                )}
               </div>
             </motion.div>
           )}
@@ -126,9 +176,13 @@ const NavbarForDetailProduct = () => {
       </nav>
 
       {/* Auth Modal */}
-      <AuthModal isOpen={showModal} onClose={() => setShowModal(false)} />
+      <AuthModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onLoginSuccess={handleLoginSuccess}
+      />
     </>
   );
 };
 
-export default NavbarForDetailProduct;
+export default Navbar;

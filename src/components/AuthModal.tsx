@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -10,9 +11,10 @@ import { toast } from "sonner";
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onLoginSuccess: () => void;
 }
 
-const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
+const AuthModal = ({ isOpen, onClose, onLoginSuccess }: AuthModalProps) => {
   const [isRegister, setIsRegister] = useState(true);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -56,8 +58,8 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
         isRegister ? "Registration successful!" : "Login successful!"
       );
 
-      // Optionally store token or set auth state
-      onClose();
+      localStorage.setItem("authUser", JSON.stringify(data));
+      onLoginSuccess();
     } catch (err: any) {
       toast.error(err.message || "Something went wrong");
       setError(err.message || "Failed to submit");
@@ -99,77 +101,46 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
             <form onSubmit={handleSubmit} className="space-y-4">
               {isRegister && (
                 <div className="flex flex-col gap-1">
-                  <label
-                    htmlFor="name"
-                    className="text-sm font-medium text-gray-700"
-                  >
+                  <label className="text-sm font-medium text-gray-700">
                     Full Name
                   </label>
                   <input
-                    id="name"
                     type="text"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="Your name"
                     required
-                    className="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm"
                   />
                 </div>
               )}
 
               <div className="flex flex-col gap-1">
-                <label
-                  htmlFor="email"
-                  className="text-sm font-medium text-gray-700"
-                >
-                  Email Address
+                <label className="text-sm font-medium text-gray-700">
+                  Email
                 </label>
                 <input
-                  id="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm"
                 />
               </div>
 
               <div className="flex flex-col gap-1">
-                <label
-                  htmlFor="password"
-                  className="text-sm font-medium text-gray-700"
-                >
+                <label className="text-sm font-medium text-gray-700">
                   Password
                 </label>
                 <input
-                  id="password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm"
                 />
-                {!isRegister && (
-                  <div className="flex justify-between items-center mt-1">
-                    <label className="flex items-center gap-2 text-sm text-gray-600">
-                      <input
-                        type="checkbox"
-                        className="w-4 h-4 rounded border border-[#FF6A1A] bg-white accent-[#FF6A1A] checked:bg-white focus:ring-0 focus:outline-none"
-                      />
-                      Remember Me
-                    </label>
-
-                    <button
-                      type="button"
-                      onClick={() => toast.info("Redirect to forgot password")}
-                      className="text-sm text-blue-600 hover:underline"
-                    >
-                      Forgot Password?
-                    </button>
-                  </div>
-                )}
               </div>
 
               {error && <p className="text-sm text-red-500">{error}</p>}
@@ -177,7 +148,7 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full bg-[#FF6A1A] hover:bg-orange-500 text-white font-semibold py-2 rounded-lg transition ${
+                className={`w-full bg-[#FF6A1A] text-white font-semibold py-2 rounded-lg transition ${
                   loading ? "opacity-60 cursor-not-allowed" : ""
                 }`}
               >
